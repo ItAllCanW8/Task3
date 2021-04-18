@@ -90,7 +90,7 @@ public class ArrayLogic {
         }
     }
 
-    public static Pair maxAndMinValues(Array arr) {
+    public static Pair<Integer, Integer> maxAndMinValues(Array arr) {
         if (arr != null) {
             selectionSort(arr);
 

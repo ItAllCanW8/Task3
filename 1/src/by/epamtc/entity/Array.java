@@ -3,8 +3,12 @@ package by.epamtc.entity;
 public class Array {
     private int[] array;
     private int size;
+    private final int DEFAULT_SIZE = 16;
 
-    public Array(){}
+    public Array(){
+        array = new int[DEFAULT_SIZE];
+        size = DEFAULT_SIZE;
+    }
 
     public Array(int[] arr){
         if(arr != null){
@@ -31,7 +35,7 @@ public class Array {
         if(index > 0)
             return array[index];
         else {
-            //exception
+            //ArrayOutOfBoundsException
             return -1;
         }
     }

@@ -1,7 +1,33 @@
 package by.epamtc.logic;
 
 public class Sorter {
-    public static int rowSum(int[] arr) {
+    public static void bubbleSort(int[][] arr, boolean ascending, SortType st ) {
+        if (arr != null) {
+            for (int i = 0; i < arr.length; i++) {
+                for (int j = 0; j < arr.length - 1; j++) {
+                    int firstVal = 0;
+                    int secVal = 0;
+
+                    firstVal = st.takeElementValue(arr[j]);
+                    secVal = st.takeElementValue(arr[j + 1]);
+
+                    if (firstVal > secVal && ascending || firstVal < secVal && !ascending) {
+                        int[] temp = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = temp;
+                    }
+                }
+            }
+        } else {
+            //NullPtrException
+        }
+    }
+}
+
+class RowSum implements SortType {
+
+    @Override
+    public int takeElementValue(int[] arr) {
         if (arr != null) {
             int sum = 0;
 
@@ -14,8 +40,12 @@ public class Sorter {
             return -1;
         }
     }
+}
 
-    public static int maxValue(int[] arr) {
+class MaxValue implements SortType {
+
+    @Override
+    public int takeElementValue(int[] arr) {
         if (arr != null) {
             int max = arr[0];
 
@@ -29,8 +59,12 @@ public class Sorter {
             return -1;
         }
     }
+}
 
-    public static int minValue(int[] arr) {
+class MinValue implements SortType {
+
+    @Override
+    public int takeElementValue(int[] arr) {
         if (arr != null) {
             int min = arr[0];
 
@@ -42,40 +76,6 @@ public class Sorter {
         } else {
             //NullPtrException
             return -1;
-        }
-    }
-
-    public static void bubbleSort(int[][] arr, SortType type, boolean ascending) {
-        if (arr != null) {
-            for (int i = 0; i < arr.length; i++) {
-                for (int j = 0; j < arr.length - 1; j++) {
-                    int firstVal = 0;
-                    int secVal = 0;
-
-                    switch (type) {
-                        case SUM: {
-                            firstVal = rowSum(arr[j]);
-                            secVal = rowSum(arr[j + 1]);
-                        }
-                        case MAX_ELEMENTS: {
-                            firstVal = maxValue(arr[j]);
-                            secVal = maxValue(arr[j + 1]);
-                        }
-                        case MIN_ELEMENTS: {
-                            firstVal = minValue(arr[j]);
-                            secVal = minValue(arr[j + 1]);
-                        }
-                    }
-
-                    if (firstVal > secVal && ascending || firstVal < secVal && !ascending) {
-                        int[] temp = arr[j];
-                        arr[j] = arr[j + 1];
-                        arr[j + 1] = temp;
-                    }
-                }
-            }
-        } else {
-            //NullPtrException
         }
     }
 }
